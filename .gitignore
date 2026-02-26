@@ -1,0 +1,94 @@
+# ─────────────────────────────────────────
+# Dependencies
+# ─────────────────────────────────────────
+node_modules/
+package-lock.json
+
+# ─────────────────────────────────────────
+# Environment Variables (SENSITIVE)
+# ─────────────────────────────────────────
+.env
+.env.*
+!.env.example
+
+# ─────────────────────────────────────────
+# Sensitive / Credentials
+# ─────────────────────────────────────────
+passwords.txt
+*.pem
+*.key
+
+# ─────────────────────────────────────────
+# Build Outputs
+# ─────────────────────────────────────────
+dist/
+build/
+frontend/dist/
+.pnp
+.pnp.js
+
+# ─────────────────────────────────────────
+# Python / ML Service
+# ─────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+.venv/
+myenv/
+pip-log.txt
+pip-delete-this-directory.txt
+*.egg-info/
+*.egg
+ml_service/venv/
+ml_service/__pycache__/
+
+# ─────────────────────────────────────────
+# Testing & Coverage
+# ─────────────────────────────────────────
+coverage/
+*.lcov
+.nyc_output/
+
+# ─────────────────────────────────────────
+# Logs
+# ─────────────────────────────────────────
+logs/
+*.log
+log.txt
+logs.txt
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+seed-error.log
+
+# ─────────────────────────────────────────
+# IDE & Editor Config
+# ─────────────────────────────────────────
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# ─────────────────────────────────────────
+# OS Files
+# ─────────────────────────────────────────
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# ─────────────────────────────────────────
+# Misc
+# ─────────────────────────────────────────
+bfg.jar
+*.bak
+*.tmp
+lint_output.txt
+lint_final.txt
+lint_report.json
+build.log
+testUpdateOutput.json
