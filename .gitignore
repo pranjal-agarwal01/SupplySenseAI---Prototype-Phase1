@@ -1,7 +1,7 @@
 # ─────────────────────────────────────────
 # Dependencies
 # ─────────────────────────────────────────
-presentation/
+
 node_modules/
 package-lock.json
 
@@ -93,3 +93,4 @@ lint_final.txt
 lint_report.json
 build.log
 testUpdateOutput.json
+presentation/
