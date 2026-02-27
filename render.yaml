@@ -1,46 +1,32 @@
 services:
-  # 1. Frontend (React/Vite)
-  - type: web
-    name: supplysenseai-frontend
-    env: static
-    buildCommand: cd frontend && npm install && npm run build
-    staticPublishPath: frontend/dist
-    envVars:
-      - key: VITE_API_BASE_URL
-        value: "https://supplysenseai-backend.onrender.com"
-      - key: VITE_ML_API_URL
-        value: "https://supplysenseai-ml.onrender.com"
-    routes:
-      - type: rewrite
-        source: /*
-        destination: /index.html
-
-  # 2. Backend (Node.js/Express)
+  # 1. Backend (Node.js/Express)
   - type: web
     name: supplysenseai-backend
     env: node
-    plan: free # Fix: Explicitly request the free tier
+    plan: free
     buildCommand: cd backend && npm install
     startCommand: cd backend && npm start
     envVars:
       - key: PORT
         value: 5000
-      - key: MONGO_URI
-        sync: false # User needs to set this in Render Dashboard
+      - key: MONGODB_URI
+        sync: false # Set this in Render Dashboard
       - key: JWT_SECRET
-        sync: false # User needs to set this in Render Dashboard
+        sync: false # Set this in Render Dashboard
       - key: ML_SERVICE_URL
         value: "https://supplysenseai-ml.onrender.com"
       - key: FRONTEND_URL
-        value: "https://supplysenseai-frontend.onrender.com"
+        sync: false # Set this to your Vercel URL in Render Dashboard
+      - key: NODE_ENV
+        value: production
 
-  # 3. ML Service (Python/Flask)
+  # 2. ML Service (Python/Flask) - optional
   - type: web
     name: supplysenseai-ml
     env: python
-    plan: free # Fix: Explicitly request the free tier
+    plan: free
     buildCommand: cd ml_service && pip install -r requirements.txt
     startCommand: cd ml_service && gunicorn app:app -b 0.0.0.0:$PORT
     envVars:
       - key: PYTHON_VERSION
-        value: 3.11.0 # specify python version for predictability
+        value: 3.11.0
