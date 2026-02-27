@@ -17,15 +17,21 @@ const app = express();
 app.use(helmet());
 
 // CORS configuration
-const allowedOrigins = [
-  process.env.FRONTEND_URL,
-  "http://localhost:5173",
-];
+const allowedOrigins = process.env.FRONTEND_URL
+  ? process.env.FRONTEND_URL.split(',')
+  : [];
+allowedOrigins.push("http://localhost:5173");
 
 app.use(
   cors({
     origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
+      if (!origin) return callback(null, true);
+
+      const isAllowed = allowedOrigins.some(allowed =>
+        origin === allowed || origin.startsWith(allowed)
+      );
+
+      if (isAllowed) {
         callback(null, true);
       } else {
         callback(new Error("Not allowed by CORS"));
