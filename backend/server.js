@@ -20,7 +20,6 @@ app.use(helmet());
 const allowedOrigins = [
   process.env.FRONTEND_URL,
   "http://localhost:5173",
-  "https://supplysenseai-frontend.onrender.com",
 ];
 
 app.use(
